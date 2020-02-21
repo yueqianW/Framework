@@ -12,13 +12,21 @@ class Login extends Component {
         super(props);
         this.state = {};
     }
-    handleSubmit = e => {};
+    // 登录按钮
+    handleSubmit = e => {
+        // 阻止提交按钮
+        e.preventDefault();
+
+        // 得到 form 对象，获得 form 表单数据
+        const form = this.props.form;
+        const values = form.getFieldsValue();
+        console.log(values)
+    };
 
     render() {
-        // form对象用来验证表单
-        // const form = this.props.form;
-        // const { getFieldDecorator } = form;
-        const { cities } = this.state;
+        // form对象用来验证表单，得到具有强大对象的 form 对象
+        const form = this.props.form;
+        const { getFieldDecorator } = form;
 
         return (
             <div className="login">
@@ -30,35 +38,29 @@ class Login extends Component {
                     <h2>用户登录</h2>
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <Form.Item>
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type="user"
-                                        style={{ color: "rgba(0,0,0,.25)" }}
-                                    />
-                                }
-                                placeholder="Username"
-                            />
+                            {getFieldDecorator('username', {
+                                rules: [{ required: true, message: 'Please input your username!' }],
+                            })(
+                                <Input
+                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    placeholder="Username"
+                                />,
+                            )}
                         </Form.Item>
                         <Form.Item>
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type="lock"
-                                        style={{ color: "rgba(0,0,0,.25)" }}
-                                    />
-                                }
-                                type="password"
-                                placeholder="Password"
-                            />
+                            {getFieldDecorator('password', {
+                                rules: [{ required: true, message: 'Please input your Password!' }],
+                            })(
+                                <Input
+                                    prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    type="password"
+                                    placeholder="Password"
+                                />,
+                            )}
                         </Form.Item>
                         <Form.Item>
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                className="login-form-button"
-                            >
-                                登录
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                Log in
                             </Button>
                         </Form.Item>
                     </Form>
@@ -68,8 +70,21 @@ class Login extends Component {
     }
 }
 /**
- * 高阶函数，高阶组件
+ * 高阶函数 create
+ * 1、一类特别的函数
+ *    接收函数类型的参数
+ *    返回值是函数
+ * 2、常见高阶函数：
+ *    定时器：setTimeout
+ *    promise：promise(()=> {}) then(value=>{},reason=>{})
+ *    数组遍历相关：forEach、filter、map、reduce、find、findIndex
+ *    函数对象 bind()
+ *    
+ *      
+ * 高阶组件
  * 包装 Form 组件生成一个新的组件：Form(Login)
+ * 本质是一个函数
+ * 接收一个组件，返回一个新的组件
  */
 
 const WrapLogin = Form.create()(Login);
