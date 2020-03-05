@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Login from './pages/login/login'
+import Admin from './pages/admin/admin'
 
-function App() {
-  return (
-    <div className="App">666
-    </div>
-  );
+class App extends Component {
+	state = {}
+	render() {
+		return (
+			<BrowserRouter>
+				<Switch>
+					<Route path="/login" component={Login}></Route>
+					<Route path="/admin" component={Admin}></Route>
+				</Switch>
+			</BrowserRouter>
+		);
+	}
 }
 
 export default App;
