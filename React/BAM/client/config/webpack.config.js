@@ -43,12 +43,10 @@ const imageInlineSizeLimit = parseInt(
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssRegex = /\.(css|less)$/;
+const cssModuleRegex = /\.module\.(css|less)$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
-const lessRegex = /\.less$/;
-const lessModuleRegex = /\.module\.less$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -83,6 +81,7 @@ module.exports = function (webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
+      { loader: require.resolve('less-loader') },
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
@@ -504,34 +503,6 @@ module.exports = function (webpackEnv) {
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
-            {
-              test: lessRegex,
-              exclude: lessModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  // modules: true, 如果仅打开cssModule  那么原类名 将会没有前缀，无法与自己的样式类名关联，所以下边做法可取
-                  modules: {
-                    localIdentName: '[local]_[hash:base64:5]',
-                  },
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
-                'less-loader'
-              ),
-              sideEffects: true,
-            },
-            {
-              test: lessModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent,
-                },
-                'less-loader'
-              )
-            }
           ],
         },
       ],

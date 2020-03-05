@@ -11,50 +11,19 @@
 ```
 create-react-app
 yarn add antd less-loader babel-plugin-import
+yarn eject
 ```
 
 配置 webpack 对 less 支持
 运行 npm run eject 暴漏 webpack 的配置文件 config/webpack.config.js
 
-第 50 行配置，添加如下支持 less 配置代码
+修改 webpack 配置#
+理论上讲，需要同步修改  webpack.config.dev.js  和  webpack.config.prod.js  配置文件：
+在 module.rules 节点中找到 css 文件的加载规则：
+`test: /\.css$/ 修改为 test: /\.(css|less)$/；`
 
-```
-const lessRegex = /\.less$/;
-const lessModuleRegex = /\.module\.less$/;
-```
-
-500 行添加代码
-
-```
-{
-    test: lessRegex,
-    exclude: lessModuleRegex,
-    use: getStyleLoaders(
-        {
-        importLoaders: 2,
-        // modules: true, 如果仅打开cssModule  那么原类名 将会没有前缀，无法与自己的样式类名关联，所以下边做法可取
-        modules:{
-            localIdentName: '[local]_[hash:base64:5]',
-        },
-        sourceMap: isEnvProduction && shouldUseSourceMap,
-        },
-        'less-loader'
-    ),
-    sideEffects: true,
-},
-{
-    test: lessModuleRegex,
-    use: getStyleLoaders(
-        {
-        importLoaders: 2,
-        sourceMap: isEnvProduction && shouldUseSourceMap,
-        modules: true,
-        getLocalIdent: getCSSModuleLocalIdent,
-        },
-        'less-loader'
-    ),
-},
-```
+在 use 数组最后新增一个对象元素
+`{loader: require.resolve('less-loader')}`
 
 antd 按需加载
 
