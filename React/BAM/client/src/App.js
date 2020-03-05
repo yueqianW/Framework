@@ -2,21 +2,19 @@
  * 应用根组件
  */
 import React, { Component } from 'react';
-import { Button } from 'antd';
-import Test from './components/test'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Admin from './pages/admin/admin'
+import Login from './pages/login/login'
 
-class App extends Component {
-    state = {}
+export default class App extends Component {
     render() {
         return (
-            <div>
-                555
-                <Button type="primary">Primary</Button>
-                <Button type="primary">Primary</Button>
-                <Test />
-            </div>
+            <BrowserRouter>
+                <Switch>    {/* 只匹配其中一个 */}
+                    <Route path='/login' component={Login}></Route>
+                    <Route path='/admin' component={Admin}></Route>
+                </Switch>
+            </BrowserRouter>
         );
     }
 }
-
-export default App;
