@@ -1,53 +1,37 @@
 import React, { Component } from 'react';
-import { Layout, Menu } from 'antd';
-import {
-    AppstoreOutlined,
-    BarChartOutlined,
-    CloudOutlined,
-    ShopOutlined,
-    TeamOutlined,
-    UserOutlined,
-    UploadOutlined,
-    VideoCameraOutlined,
-} from '@ant-design/icons';
+import { Redirect, Route, Switch, Router } from 'react-router-dom'
+import { Layout } from 'antd';
+import './index.less'
+import LeftNav from '../../components/left-nav/left-nav'
+import Header from '../../components/header/header'
+import Home from '../home/home'
+// import Test from '../test/test'
+// import Javascript from '../front/javascript'
+// import Css from '../front/css'
+// import Html from '../front/html'
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 class Admin extends Component {
     state = {}
     render() {
         return (
-            <Layout>
-                <Sider
-                    style={{
-                        overflow: 'auto',
-                        height: '100vh',
-                        position: 'fixed',
-                        left: 0,
-                    }}
-                >
-                    <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-                        <Menu.Item key="1">
-                            <UserOutlined />
-                            <span className="nav-text">nav 1</span>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <VideoCameraOutlined />
-                            <span className="nav-text">nav 2</span>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <UploadOutlined />
-                            <span className="nav-text">nav 3</span>
-                        </Menu.Item>
-                    </Menu>
+            <Layout className="layout">
+                <Sider>
+                    <LeftNav />
                 </Sider>
-                <Layout className="site-layout" style={{ marginLeft: 200 }}>
-                    <Header className="site-layout-background" style={{ padding: 0 }} />
-                    <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-                        <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>content</div>
+                <Layout>
+                    <Header>Header</Header>
+                    <Content className="content">
+                        content
+                        <Switch>
+                            {/* <Route path="/home" component={Home}></Route> */}
+                            {/* <Route path="/test" component={Test}></Route>
+                            <Route path="/html" component={Html}></Route> */}
+                            {/* <Redirect to="home" /> */}
+                        </Switch>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                    <Footer>Footer</Footer>
                 </Layout>
             </Layout>
         );
