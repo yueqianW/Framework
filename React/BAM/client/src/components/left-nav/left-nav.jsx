@@ -38,12 +38,16 @@ class LeftNav extends Component {
                     inlineCollapsed={this.state.collapsed}
                 >
                     <Menu.Item key="1">
-                        <PieChartOutlined />
-                        <span>Option 1</span>
+                        <Link to="/home">
+                            <PieChartOutlined />
+                            <span>Home</span>
+                        </Link>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <DesktopOutlined />
-                        <span>Option 2</span>
+                        <Link to="/test">
+                            <DesktopOutlined />
+                            <span>Option 2</span>
+                        </Link>
                     </Menu.Item>
                     <SubMenu
                         key="sub1"

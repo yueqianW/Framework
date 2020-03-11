@@ -10,7 +10,7 @@
 
 ```
 create-react-app
-yarn add antd less-loader babel-plugin-import
+yarn add antd react-router-dom less-loader babel-plugin-import
 yarn eject
 ```
 
