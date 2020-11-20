@@ -1,0 +1,1 @@
+export default ({ child }) => <span>{child}</span>
