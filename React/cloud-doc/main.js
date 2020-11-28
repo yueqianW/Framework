@@ -7,10 +7,10 @@ app.on('ready', () => {
     width: 1024,
     height: 680,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     }
   })
 
-  const urlLocation = isDev ? 'https://localhost: 3000' : ''
-  mainWindow.loadUrl(urlLocation)
+  const urlLocation = isDev ? 'http://localhost:3000' : 'dummyurl';
+  mainWindow.loadURL(urlLocation)
 })
