@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const koaJson = require('koa-json')
 const cors = require('@koa/cors')
 const koaBody = require('koa-body')
 
@@ -20,7 +21,10 @@ router.get('/api', ctx => {
 
   // console.log(ctx)
   // console.log(ctx.request)
-  ctx.body = 'hello api'
+  ctx.body = {
+    name: params.name,
+    age: params.age
+  }
 })
 
 router.get('/async', async (ctx) => {
@@ -42,6 +46,7 @@ router.post('/post', async (ctx) => {
 
 app.use(koaBody())
 app.use(cors());
+app.use(koaJson({ pretty: false, param: 'pretty' }))
 app.use(router.routes())
 app.use(router.allowedMethods())
 
