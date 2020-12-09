@@ -13,7 +13,7 @@ const middleware2 = function async(ctx, next) {
   next();
 }
 
-app.use(middleware)
-app.use(middleware2)
+app.use(middleware())
+app.use(middleware2())
 
 app.listen(3000)
