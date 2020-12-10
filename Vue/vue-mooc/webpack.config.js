@@ -6,7 +6,7 @@ module.exports = {
   target: 'node',
   mode: 'development',
   entry: {
-    server: path.join(__dirname, 'src/index.js')
+    server: path.join(__dirname, 'src/index.tsx')
   },
   output: {
     filename: '[name].bundle.js',
