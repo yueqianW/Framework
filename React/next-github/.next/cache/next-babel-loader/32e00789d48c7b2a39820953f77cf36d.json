@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\nexport default (({\n  child\n}) => /*#__PURE__*/_jsx(\"span\", {\n  children: child\n}));","map":null,"metadata":{},"sourceType":"module"}
