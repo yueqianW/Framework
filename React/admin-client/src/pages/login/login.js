@@ -18,10 +18,10 @@ class Login extends Component {
       <div className='login'>
         <header className="login-header">
           <img src={logo} alt="logo" />
-          <span>柴犬</span>
+          <h1>柴犬</h1>
         </header>
         <section className="login-content">
-          <span>登录</span>
+          <h1>登录</h1>
           <Form
             name="normal_login"
             className="login-form"
@@ -45,20 +45,9 @@ class Login extends Component {
               />
             </Form.Item>
             <Form.Item>
-              <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
-            </Form.Item>
-
-            <Form.Item>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
-              Or <a href="">register now!</a>
             </Form.Item>
           </Form>
         </section>
