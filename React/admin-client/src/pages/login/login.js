@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
-import { Form, Checkbox, Button, Input } from 'antd';
+import { Form, Button, Input, Icon, message } from 'antd';
 import './login.less';
-import logo from './images/avatar.jpg'
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import logo from './images/avatar.jpg';
+import { reqLogin } from '../../api/index';
 
 class Login extends Component {
   constructor(props) {
     super(props);
   }
 
-  onFinish = values => {
-    console.log('Received values of form: ', values);
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        reqLogin(values).then(res => {
+          console.log('res', res)
+        })
+      }
+    });
   };
 
+  validatorPwd = (rule, value, cb) => {
+    console.log('--- 111')
+    if (value.length > 4) {
+      cb()
+    } else {
+      cb('error')
+    }
+  }
+
   render() {
+    const { getFieldDecorator } = this.props.form;
+
     return (
       <div className='login'>
         <header className="login-header">
@@ -22,27 +41,30 @@ class Login extends Component {
         </header>
         <section className="login-content">
           <h1>登录</h1>
-          <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{ remember: true }}
-            onFinish={this.onFinish.bind(this)}
-          >
-            <Form.Item
-              name="username"
-              rules={[{ required: true, message: 'Please input your Username!' }]}
-            >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator('username', {
+                rules: [{ required: true, message: 'Please input your username!' },
+                  { pattern: /^[a-zA-Z0-9]+$/, message: 'username must number code!' },],
+              })(
+                <Input
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="Username"
+                />,
+              )}
             </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[{ required: true, message: 'Please input your Password!' }]}
-            >
-              <Input
-                prefix={<LockOutlined className="site-form-item-icon" />}
-                type="password"
-                placeholder="Password"
-              />
+            <Form.Item>
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: 'Please input your Password!' },
+                  // { validator: this.validatorPwd }
+                ],
+              })(
+                <Input
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  type="password"
+                  placeholder="Password"
+                />,
+              )}
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="login-form-button">
@@ -56,4 +78,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Form.create({ name: 'login' })(Login)
