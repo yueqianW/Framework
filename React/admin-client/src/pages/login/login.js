@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Button, Input, Icon, message } from 'antd';
+import { Redirect } from 'react-router-dom';
 import './login.less';
 import logo from './images/avatar.jpg';
 import { reqLogin } from '../../api/index';
+import memoryUtils from "../../utils/memoryUtils";
+import storageUtils from "../../utils/storageUtils";
 
 class Login extends Component {
   constructor(props) {
@@ -11,12 +14,22 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields(async (err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        reqLogin(values).then(res => {
-          console.log('res', res)
-        })
+        // reqLogin(values).then(res => {
+        //   console.log('res', res)
+        // })
+        const result = await reqLogin(values);
+        const user = result.data;
+        if (result.status == 0) {
+          message.success('登录成功')
+          memoryUtils.user = user;
+          storageUtils.saveUser(user)
+          this.props.history.replace('/')
+        } else {
+          message.error(result.msg)
+        }
       }
     });
   };
@@ -31,6 +44,10 @@ class Login extends Component {
   }
 
   render() {
+    const user = memoryUtils.user;
+    if (user && user._id) {
+      return <Redirect to='/' />
+    }
     const { getFieldDecorator } = this.props.form;
 
     return (
