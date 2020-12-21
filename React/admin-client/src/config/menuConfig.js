@@ -7,8 +7,12 @@ const menuList = [{
   key: '/javascript',
   icon: '',
   children: [{
-    title: 'base',
-    key: '/base',
+    title: '基础',
+    key: '/javascript/base',
+    icon: '',
+  }, {
+    title: '高级',
+    key: '/advance',
     icon: '',
   }]
 }, {
@@ -22,6 +26,32 @@ const menuList = [{
   }, {
     title: 'Vue',
     key: '/vue',
+    icon: '',
+  }]
+}, {
+  title: 'Echarts',
+  key: '/echarts',
+  icon: '',
+  children: [{
+    title: 'pie',
+    key: '/pie',
+    icon: '',
+  }, {
+    title: 'line',
+    key: '/line',
+    icon: '',
+  }]
+}, {
+  title: '商品',
+  key: '/goods',
+  icon: '',
+  children: [{
+    title: '品类',
+    key: '/kind',
+    icon: '',
+  }, {
+    title: '商品管理',
+    key: '/manage',
     icon: '',
   }]
 },]

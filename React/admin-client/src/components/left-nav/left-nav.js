@@ -43,7 +43,7 @@ export default class LeftNav extends Component {
                 <span>{item.title}</span>
               </span>
             }>
-            {this.getMenuNodes(item.children)}
+            {this.getMenuNodes_map(item.children)}
           </SubMenu>
         )
       }
@@ -51,32 +51,10 @@ export default class LeftNav extends Component {
   }
 
   getMenuNodes = (menuList) => {
-    return menuList.map(item => {
+    return menuList.reduce((pre, cur) => {
 
-      if (!item.children) {
-        return (
-          <Menu.Item key={item.key}>
-            <Link to={item.key}>
-              <Icon type={item.icon} />
-              <span>{item.title}</span>
-            </Link>
-          </Menu.Item>
-        )
-      } else {
-        return (
-          <SubMenu
-            key={item.key}
-            title={
-              <span>
-                <Icon type={item.icon} />
-                <span>{item.title}</span>
-              </span>
-            }>
-            {this.getMenuNodes(item.children)}
-          </SubMenu>
-        )
-      }
-    })
+      return pre;
+    }, [])
   }
 
   render() {

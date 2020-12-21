@@ -8,6 +8,8 @@ import Home from "../../pages/home/home";
 import Front from "../../pages/front/front";
 import ReactPage from "../framework/react/react";
 import VuePage from "../framework/vue/vue";
+import Manage from "../goods/manage/manage";
+import Base from "../javascript/base";
 
 const { Footer, Sider, Content } = Layout;
 
@@ -32,6 +34,8 @@ class Admin extends Component {
               <Route path='/front' component={Front}></Route>
               <Route path='/vue' component={VuePage}></Route>
               <Route path='/react' component={ReactPage}></Route>
+              <Route path='/manage' component={Manage}></Route>
+              <Route path='/javascript/base' component={Base}></Route>
               <Redirect to='/home' />
             </Switch>
           </Content>
