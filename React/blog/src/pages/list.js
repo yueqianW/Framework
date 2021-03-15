@@ -5,9 +5,9 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
-import { Button, Row, Col, List, Icon } from 'antd'
+import { Button, Row, Col, List, Icon, Breadcrumb } from 'antd'
 
-const Home = () => {
+const MyList = () => {
   const [myList, setMyList] = useState([
     { title: 111, context: 222 },
     { title: 111, context: 222 },
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>yueqian</title>
+        <title>MyList</title>
       </Head>
       <Header />
       <Row>
@@ -26,6 +26,14 @@ const Home = () => {
           <Advert />
         </Col>
         <Col xs={24} sm={24} md={16} lg={18} xl={14}>
+          <div>
+            <Breadcrumb>
+              <Breadcrumb.Item>
+                <a href="/">index</a>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>video</Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
           <List
             header={<div>最新日志</div>}
             itemLayout="vertical"
@@ -49,4 +57,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default MyList

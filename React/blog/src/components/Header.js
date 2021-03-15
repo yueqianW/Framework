@@ -6,15 +6,15 @@ const Header = () => {
   return (
     <div>
       <Row>
-        <Col xs={24} sm={24} md={10} lg={10} xl={10}>
+        <Col xs={24} sm={24} md={10} lg={15} xl={12}>
           <span>yueqian</span>
           <span>111</span>
         </Col>
-        <Col>
+        <Col xs={0} sm={0} md={14} lg={8} xl={6}>
           <Menu mode="horizontal">
-            <Menu.item key="home">
+            <Menu.Item key="home">
               <Icon type="home" />首页
-          </Menu.item>
+          </Menu.Item>
             <Menu.Item key="video">
               <Icon type="youtube" />视频
                 </Menu.Item>
