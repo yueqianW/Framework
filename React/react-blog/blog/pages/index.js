@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../styles/Home.module.css'
+import '../static/style/pages/index.css'
 import { Button, Row, Col, List, Icon } from 'antd'
 import Header from '../components/header/header'
 
@@ -22,6 +23,11 @@ const Home = () => {
             renderItem={item => (
               <List.Item>
                 <div className="list-title">{item.title}</div>
+                <div className="list-icon">
+                  <span><Icon type="calendar" />111</span>
+                  <span><Icon type="folder" />222</span>
+                  <span><Icon type="fire" />333</span>
+                </div>
                 <div className="list-context">{item.context}</div>
               </List.Item>
             )}
