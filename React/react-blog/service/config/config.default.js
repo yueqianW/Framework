@@ -23,6 +23,18 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.mysql = {
+    client: {
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: '12345678',
+      database: 'react_blog',
+    },
+    app: true,
+    agent: false,
+  };
+
   return {
     ...config,
     ...userConfig,
