@@ -3,6 +3,8 @@ import styles from '../styles/Home.module.css'
 import '../static/style/pages/index.css'
 import { Button, Row, Col, List, Icon } from 'antd'
 import Header from '../components/header/header'
+import Author from '../components/Author/Author'
+import Head from 'next/head'
 
 const Home = () => {
   const [mylist, setMylist] = useState([
@@ -13,8 +15,15 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Home</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header />
       <Row className="comm-main" type="flex" justify="center">
+        <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
+          <Author />
+        </Col>
         <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}>
           <List
             header={<div>111</div>}
@@ -34,9 +43,6 @@ const Home = () => {
           >
 
           </List>
-        </Col>
-        <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-          222
         </Col>
       </Row>
     </div>
