@@ -1,13 +1,28 @@
-import React, { Component } from 'react'
-import 'antd/dist/antd.css';
-import { Button } from 'antd';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Login from './pages/login/login';
+import Default from './pages/home/default';
+import Test from './pages/test';
 
-class App extends Component {
-  render() {
-    return (
-      <div> <Button>hello</Button></div >
-    )
-  }
+function App() {
+  return (
+    <Router>
+      {/* <ul>
+        <li>
+          <Link to="/">首页</Link>
+        </li>
+        <li>
+          <Link to="/login">login</Link>
+        </li>
+        <li>
+          <Link to="/test">test</Link>
+        </li>
+      </ul> */}
+      <Route path="/" exact component={Default}></Route>
+      <Route path="/login" component={Login}></Route>
+      <Route path="/test/:id" component={Test}></Route>
+    </Router>
+  );
 }
 
-export default App
+export default App;

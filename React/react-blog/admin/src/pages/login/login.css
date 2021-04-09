@@ -1,7 +1,21 @@
 .login-div {
-  margin: 150px auto;
-  width: 400px;
+  /* padding: 150px auto;
+  width: 400px; */
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
 }
+
 body {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-image: url('../../assets/images/bg.jpg');
+  background-repeat: no-repeat;
+}
+
+.login-input {
+  margin: 20px 0;
+}
+
+.login-btn {
+  width: 100%;
 }
