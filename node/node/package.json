@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "00-app.js",
+  "dependencies": {
+    "charenc": "^0.0.2",
+    "crypt": "^0.0.2",
+    "is-buffer": "^1.1.6",
+    "md5": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
